@@ -33,6 +33,7 @@ function Navigation() {
               </li>
             </ul>
             <div className="dropdown-content">
+              <Link to="/propsToComponent"> PropsToComponent </Link>
               <Link to="/formulaire"> Formulaire </Link>
 
               <a href="#">Link 2</a>
