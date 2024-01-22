@@ -7,7 +7,7 @@ const navigation = {
     display: "flex",
     justifyContent: "space-around",
     listStyle: "none",
-    backgroundColor: "grey",
+    backgroundColor: "#808080",
     padding: "10px",
     textDecoration: "none",
   },
@@ -50,7 +50,7 @@ function Navigation() {
             </ul>
             <div className="dropdown-content">
               <Link to="/todo"> todo </Link>
-
+              <Link to="/countries"> Countries Page</Link>
               <a href="#">Link 2</a>
               <a href="#">Link 3</a>
             </div>
