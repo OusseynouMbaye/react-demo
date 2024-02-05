@@ -6,7 +6,7 @@ import "../css/Button.css";
 function MyButton({ numb, onClick }) {
   return (
     <>
-      <button className="my_button" onClick={onClick}>
+      <button className="my_button " onClick={onClick}>
         count is {numb}
       </button>
       {/* <button className={style.button}>I'm a button</button> */}
