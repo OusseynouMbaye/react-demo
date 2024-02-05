@@ -1,0 +1,19 @@
+.grid_map {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  row-gap: 19px;
+  /* background: red; */
+}
+
+.display_li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.img_map {
+  width: 200px;
+  height: 100px;
+  border-radius: 18%;
+}

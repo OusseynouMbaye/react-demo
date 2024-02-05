@@ -20,10 +20,16 @@ const styleMap = {
     height: "100px",
     borderRadius: "18%",
   },
+  button_input: {
+    display: "flex",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+  },
 };
 
 function Countries() {
   const [countries, setCountries] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchCountries("https://restcountries.com/v2/all");
@@ -31,6 +37,14 @@ function Countries() {
 
   const handleContinentButtonClick = (continent) => {
     fetchCountries(`https://restcountries.com/v2/region/${continent}`);
+  };
+
+  const handleAllContinent = () => {
+    fetchCountries("https://restcountries.com/v2/all");
+  };
+
+  const handleSearchInputChange = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   const fetchCountries = (url) => {
@@ -42,28 +56,47 @@ function Countries() {
       });
   };
 
+  const filteredCountries = countries
+    ? countries.filter((country) =>
+        country.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : [];
+
   return (
     <div>
       <Navigation />
       <h1>Countries Map</h1>
-      <div>
-        <button onClick={() => handleContinentButtonClick("africa")}>
-          Africa
-        </button>
-        <button onClick={() => handleContinentButtonClick("americas")}>
-          Americas
-        </button>
-        <button onClick={() => handleContinentButtonClick("asia")}>Asia</button>
-        <button onClick={() => handleContinentButtonClick("europe")}>
-          Europe
-        </button>
-        <button onClick={() => handleContinentButtonClick("oceania")}>
-          Oceania
-        </button>
+      <div style={styleMap.button_input}>
+        <div>
+          <button onClick={() => handleContinentButtonClick("africa")}>
+            Africa
+          </button>
+          <button onClick={() => handleContinentButtonClick("americas")}>
+            Americas
+          </button>
+          <button onClick={() => handleContinentButtonClick("asia")}>
+            Asia
+          </button>
+          <button onClick={() => handleContinentButtonClick("europe")}>
+            Europe
+          </button>
+          <button onClick={() => handleContinentButtonClick("oceania")}>
+            Oceania
+          </button>
+          <button onClick={() => handleAllContinent()}> all countries</button>
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Search country"
+            value={searchTerm}
+            onChange={handleSearchInputChange}
+          />
+        </div>
       </div>
-      {countries && (
+      {filteredCountries.length > 0 ? (
         <ul style={styleMap.grid_map}>
-          {countries.map((country) => (
+          {filteredCountries.map((country) => (
             <li key={country.id} style={styleMap.display_li}>
               <span>{country.name}</span>
               <span> SubRegion : {country.subregion}</span>
@@ -83,6 +116,8 @@ function Countries() {
             </li>
           ))}
         </ul>
+      ) : (
+        <p>No countries found.</p>
       )}
     </div>
   );
