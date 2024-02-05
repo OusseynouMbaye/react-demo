@@ -52,7 +52,7 @@ function Home() {
 
   return (
     <div className={` ${darkMode && "dark"}`}>
-      <main className="bg-neutral-100 dark:bg-neutral-900 ">
+      <main className="bg-neutral-100 dark:bg-blue-950 ">
         <Navigation />
         <h1 className="text-3xl font-bold underline bg-red-800">Home</h1>
         <div>
